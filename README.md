@@ -1,11 +1,6 @@
-# Aider polyglot benchmark
+# Roo Code Benchmark Exercises
 
-This repository contains a curated collection of programming exercises extracted from Exercism's language tracks. These exercises are used for benchmarking and testing purposes.
-
-For more information see:
-
-- [The aider blog](https://aider.chat/2024/12/21/polyglot.html)
-- [The benchmark harness README](https://github.com/Aider-AI/aider/tree/main/benchmark)
+This is based on the outstanding work done by [Aider](https://aider.chat/2024/12/21/polyglot.html).
 
 ## Source Attribution
 
@@ -18,10 +13,6 @@ All exercises in this repository are sourced from the following Exercism languag
 - [Python Track](https://github.com/exercism/python)
 - [Rust Track](https://github.com/exercism/rust)
 
-## Credits
-
 All exercise content is copyright © [Exercism](https://exercism.org). These exercises are used in accordance with Exercism's open source licenses.
 
-Please visit [Exercism](https://exercism.org) or the
-repos above to see licensing of these coding
-exercises.
+Please visit [Exercism](https://exercism.org) or the repos above to see licensing of these coding exercises.
