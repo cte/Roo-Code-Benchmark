@@ -19,7 +19,6 @@ public class HouseTest {
             "This is the house that Jack built.");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void verseTwo() {
         assertThat(house.verse(2)).isEqualTo(
@@ -28,7 +27,6 @@ public class HouseTest {
         );
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void verseThree() {
         assertThat(house.verse(3)).isEqualTo(
@@ -37,7 +35,6 @@ public class HouseTest {
             "that lay in the house that Jack built.");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void verseFour() {
         assertThat(house.verse(4)).isEqualTo(
@@ -47,7 +44,6 @@ public class HouseTest {
             "that lay in the house that Jack built.");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void verseFive() {
         assertThat(house.verse(5)).isEqualTo(
@@ -58,7 +54,6 @@ public class HouseTest {
             "that lay in the house that Jack built.");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void verseSix() {
         assertThat(house.verse(6)).isEqualTo(
@@ -70,7 +65,6 @@ public class HouseTest {
             "that lay in the house that Jack built.");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void verseSeven() {
         assertThat(house.verse(7)).isEqualTo(
@@ -83,7 +77,6 @@ public class HouseTest {
             "that lay in the house that Jack built.");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void verseEight() {
         assertThat(house.verse(8)).isEqualTo(
@@ -97,7 +90,6 @@ public class HouseTest {
             "that lay in the house that Jack built.");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void verseNine() {
         assertThat(house.verse(9)).isEqualTo(
@@ -112,7 +104,6 @@ public class HouseTest {
             "that lay in the house that Jack built.");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void verse10() {
         assertThat(house.verse(10)).isEqualTo(
@@ -128,7 +119,6 @@ public class HouseTest {
             "that lay in the house that Jack built.");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void verse11() {
         assertThat(house.verse(11)).isEqualTo(
@@ -145,7 +135,6 @@ public class HouseTest {
             "that lay in the house that Jack built.");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void verse12() {
         assertThat(house.verse(12)).isEqualTo(
@@ -163,7 +152,6 @@ public class HouseTest {
             "that lay in the house that Jack built.");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void multipleVerses() {
         int startVerse = 4;
@@ -202,7 +190,6 @@ public class HouseTest {
             "that lay in the house that Jack built.");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void wholeRhyme() {
         assertThat(house.sing()).isEqualTo(

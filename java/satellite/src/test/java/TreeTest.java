@@ -16,7 +16,6 @@ public class TreeTest {
             .containsExactly('A', 'B', 'C', 'D', 'E', 'F');
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void preorder() {
         Tree tree = new Tree(
@@ -29,7 +28,6 @@ public class TreeTest {
             .containsExactly('A', 'B', 'C', 'D', 'E', 'F');
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void postorder() {
         Tree tree = new Tree(

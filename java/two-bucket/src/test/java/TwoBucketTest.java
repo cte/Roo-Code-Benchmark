@@ -16,7 +16,6 @@ public class TwoBucketTest {
 
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void testBucketOneSizeThreeBucketTwoSizeFiveStartWithTwo() {
 
@@ -28,7 +27,6 @@ public class TwoBucketTest {
 
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void testBucketOneSizeSevenBucketTwoSizeElevenStartWithOne() {
 
@@ -40,7 +38,6 @@ public class TwoBucketTest {
 
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void testBucketOneSizeSevenBucketTwoSizeElevenStartWithTwo() {
 
@@ -52,7 +49,6 @@ public class TwoBucketTest {
 
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void testBucketOneSizeOneBucketTwoSizeThreeStartWithTwo() {
 
@@ -64,7 +60,6 @@ public class TwoBucketTest {
 
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void testBucketOneSizeTwoBucketTwoSizeThreeStartWithOne() {
 

@@ -15,7 +15,6 @@ public class CircularBufferTest {
                 .withMessage("Tried to read from empty buffer");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void canReadItemJustWritten() throws BufferIOException {
         CircularBuffer<Integer> buffer = new CircularBuffer<>(1);
@@ -24,7 +23,6 @@ public class CircularBufferTest {
         assertThat(buffer.read()).isEqualTo(1);
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void canReadItemOnlyOnce() throws BufferIOException {
         CircularBuffer<Integer> buffer = new CircularBuffer<>(1);
@@ -37,7 +35,6 @@ public class CircularBufferTest {
                 .withMessage("Tried to read from empty buffer");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void readsItemsInOrderWritten() throws BufferIOException {
         CircularBuffer<Integer> buffer = new CircularBuffer<>(2);
@@ -48,7 +45,6 @@ public class CircularBufferTest {
         assertThat(buffer.read()).isEqualTo(2);
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void fullBufferCantBeWrittenTo() throws BufferIOException {
         CircularBuffer<Integer> buffer = new CircularBuffer<>(1);
@@ -60,7 +56,6 @@ public class CircularBufferTest {
                 .withMessage("Tried to write to full buffer");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void readFreesUpSpaceForWrite() throws BufferIOException {
         CircularBuffer<Integer> buffer = new CircularBuffer<>(1);
@@ -71,7 +66,6 @@ public class CircularBufferTest {
         assertThat(buffer.read()).isEqualTo(2);
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void maintainsReadPositionAcrossWrites() throws BufferIOException {
         CircularBuffer<Integer> buffer = new CircularBuffer<>(3);
@@ -84,7 +78,6 @@ public class CircularBufferTest {
         assertThat(buffer.read()).isEqualTo(3);
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void cantReadClearedItems() throws BufferIOException {
         CircularBuffer<Integer> buffer = new CircularBuffer<>(1);
@@ -97,7 +90,6 @@ public class CircularBufferTest {
                 .withMessage("Tried to read from empty buffer");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void clearFreesUpCapacity() throws BufferIOException {
         CircularBuffer<Integer> buffer = new CircularBuffer<>(1);
@@ -108,7 +100,6 @@ public class CircularBufferTest {
         assertThat(buffer.read()).isEqualTo(2);
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void clearDoesNothingOnEmptyBuffer() throws BufferIOException {
         CircularBuffer<Integer> buffer = new CircularBuffer<>(1);
@@ -118,7 +109,6 @@ public class CircularBufferTest {
         assertThat(buffer.read()).isEqualTo(1);
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void overwriteActsLikeWriteOnNonFullBuffer() throws BufferIOException {
         CircularBuffer<Integer> buffer = new CircularBuffer<>(2);
@@ -129,7 +119,6 @@ public class CircularBufferTest {
         assertThat(buffer.read()).isEqualTo(2);
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void overwriteRemovesOldestElementOnFullBuffer() throws BufferIOException {
         CircularBuffer<Integer> buffer = new CircularBuffer<>(2);
@@ -141,7 +130,6 @@ public class CircularBufferTest {
         assertThat(buffer.read()).isEqualTo(3);
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void overwriteDoesntRemoveAnAlreadyReadElement() throws BufferIOException {
         CircularBuffer<Integer> buffer = new CircularBuffer<>(3);
@@ -157,7 +145,6 @@ public class CircularBufferTest {
         assertThat(buffer.read()).isEqualTo(5);
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void initialClearDoesNotAffectWrappingAround() throws BufferIOException {
         CircularBuffer<Integer> buffer = new CircularBuffer<>(2);

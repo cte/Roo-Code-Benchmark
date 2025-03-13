@@ -1,20 +1,21 @@
 #!/bin/bash
 
-# https://github.com/exercism/javascript/blob/main/docs/TESTS.md
+# https://github.com/exercism/python/blob/main/docs/TESTS.md
+# https://github.com/astral-sh/uv
 
 success_count=0
 failure_count=0
 total_count=0
 
-corepack enable
+python3 -m uv sync
 
 for dir in */; do # Loop through each subdirectory.
   if [ -d "$dir" ]; then
     name=${dir%/} # Remove trailing slash from directory name.
 
-    if [ -f "$dir/package.json" ]; then
+    if [ -n "$(find "$dir" -maxdepth 1 -name "*_test.py" -print -quit)" ]; then
       ((total_count++))
-      (cd "$dir" && pnpm install >/dev/null 2>&1 && pnpm test >/dev/null 2>&1)
+      (cd "$dir" && python3 -m uv run python3 -m pytest -o markers=task ${name}_test.py > /dev/null 2>&1)
 
       if [ $? -eq 0 ]; then
         echo "🟢 $name"
@@ -24,7 +25,7 @@ for dir in */; do # Loop through each subdirectory.
         ((failure_count++))
       fi
     else
-      echo "⚠️ Skipped (no package.json found)"
+      echo "⚠️ Skipped (no test.py found)"
     fi
   fi
 done

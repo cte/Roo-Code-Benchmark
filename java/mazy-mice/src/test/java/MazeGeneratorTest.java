@@ -47,7 +47,6 @@ public class MazeGeneratorTest {
                 .hasDimensions(expectedHeight, expectedWidth);
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void theMazeContainsOnlyValidCharacters() {
         var maze = sut.generatePerfectMaze(RECTANGLE_ROWS, RECTANGLE_COLUMNS);
@@ -61,7 +60,6 @@ public class MazeGeneratorTest {
         }
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void theMazeHasOnlyOneEntranceOnTheLeftSide() {
         var maze = sut.generatePerfectMaze(RECTANGLE_ROWS, RECTANGLE_COLUMNS);
@@ -72,7 +70,6 @@ public class MazeGeneratorTest {
                 .isOne();
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void theMazeHasSingleExitOnTheRightSideOfTheMaze() {
         var maze = sut.generatePerfectMaze(RECTANGLE_ROWS, RECTANGLE_COLUMNS);
@@ -83,7 +80,6 @@ public class MazeGeneratorTest {
                 .isOne();
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void aMazeIsDifferentEachTimeItIsGenerated() {
         var maze1 = sut.generatePerfectMaze(RECTANGLE_ROWS, RECTANGLE_COLUMNS);
@@ -94,7 +90,6 @@ public class MazeGeneratorTest {
                 .isNotEqualTo(maze2);
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void twoMazesWithSameSeedShouldBeEqual() {
         var maze1 = sut.generatePerfectMaze(RECTANGLE_ROWS, RECTANGLE_COLUMNS, SEED_ONE);
@@ -105,7 +100,6 @@ public class MazeGeneratorTest {
                 .isEqualTo(maze2);
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void twoMazesWithDifferentSeedsShouldNotBeEqual() {
         var maze1 = sut.generatePerfectMaze(RECTANGLE_ROWS, RECTANGLE_COLUMNS, SEED_ONE);
@@ -116,7 +110,6 @@ public class MazeGeneratorTest {
                 .isNotEqualTo(maze2);
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void theMazeIsPerfect() {
         var maze = sut.generatePerfectMaze(RECTANGLE_ROWS, RECTANGLE_COLUMNS);
@@ -125,7 +118,6 @@ public class MazeGeneratorTest {
         assertThatMazeHasNoIsolatedSections(maze);
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void theMazeIsPerfectWithSeed() {
         var maze = sut.generatePerfectMaze(RECTANGLE_ROWS, RECTANGLE_COLUMNS, SEED_ONE);
@@ -134,28 +126,24 @@ public class MazeGeneratorTest {
         assertThatMazeHasNoIsolatedSections(maze);
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void shouldThrowExceptionWhenRowsIsLessThanFive() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> sut.generatePerfectMaze(0, RECTANGLE_COLUMNS));
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void shouldThrowExceptionWhenColumnsIsLessThanFive() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> sut.generatePerfectMaze(RECTANGLE_ROWS, 0));
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void shouldThrowExceptionWhenRowsIsMoreThenHundred() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> sut.generatePerfectMaze(101, RECTANGLE_COLUMNS));
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void shouldThrowExceptionWhenColumnsIsMoreThenHundred() {
         assertThatIllegalArgumentException()

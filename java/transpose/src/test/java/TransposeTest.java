@@ -17,7 +17,6 @@ public class TransposeTest {
         assertThat(transpose.transpose("")).isEqualTo("");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void twoCharactersInARow() {
         assertThat(transpose.transpose("A1"))
@@ -26,7 +25,6 @@ public class TransposeTest {
                 "\n1");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void twoCharactersInAColumn() {
         assertThat(
@@ -36,7 +34,6 @@ public class TransposeTest {
             .isEqualTo("A1");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void simple() {
         assertThat(
@@ -49,7 +46,6 @@ public class TransposeTest {
                 "C3");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void singleLine() {
         assertThat(transpose.transpose("Single line."))
@@ -68,7 +64,6 @@ public class TransposeTest {
                 ".");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void firstLineLongerThanSecondLine() {
         assertThat(
@@ -94,7 +89,6 @@ public class TransposeTest {
                 ".");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void secondLineLongerThanFirstLine() {
         assertThat(
@@ -120,7 +114,6 @@ public class TransposeTest {
                 " .");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void mixedLineLength() {
         assertThat(
@@ -149,7 +142,6 @@ public class TransposeTest {
                 ".");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void square() {
         assertThat(
@@ -167,7 +159,6 @@ public class TransposeTest {
                 "TREND");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void rectangle() {
         assertThat(
@@ -187,7 +178,6 @@ public class TransposeTest {
                 "EDGE");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void triangle() {
         assertThat(
@@ -207,7 +197,6 @@ public class TransposeTest {
                 "     R");
     }
     
-    @Disabled("Remove to run test")
     @Test
     public void jaggedTriangle() {
         assertThat(

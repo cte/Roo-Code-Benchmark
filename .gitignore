@@ -1,3 +1,22 @@
+# C++
+build
+
+# Go
+
+# Java
+.gradle
+java/*/build
+
 # JavaScript
 node_modules
 package-lock.json
+pnpm-lock.yaml
+
+# Python
+.venv
+.pytest_cache
+uv.lock
+
+# Rust
+target
+Cargo.lock

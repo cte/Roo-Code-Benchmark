@@ -16,7 +16,6 @@ public class ReactTest {
         assertThat(input.getValue()).isEqualTo(10);
     }
 
-    @Disabled("Remove to run")
     @Test
     public void testInputCellValueCanBeSet() {
         var input = React.inputCell(4);
@@ -25,7 +24,6 @@ public class ReactTest {
         assertThat(input.getValue()).isEqualTo(20);
     }
 
-    @Disabled("Remove to run")
     @Test
     public void testComputeCellCalculateInitialValue() {
         var input = React.inputCell(1);
@@ -34,7 +32,6 @@ public class ReactTest {
         assertThat(output.getValue()).isEqualTo(2);
     }
 
-    @Disabled("Remove to run")
     @Test
     public void testComputeCellsInTheRightOrder() {
         var first = React.inputCell(1);
@@ -44,7 +41,6 @@ public class ReactTest {
         assertThat(output.getValue()).isEqualTo(21);
     }
 
-    @Disabled("Remove to run")
     @Test
     public void testComputeCellsUpdateValueWhenDependenciesAreChanged() {
         var input = React.inputCell(1);
@@ -54,7 +50,6 @@ public class ReactTest {
         assertThat(output.getValue()).isEqualTo(4);
     }
 
-    @Disabled("Remove to run")
     @Test
     public void testComputeCellsCanDependOnOtherComputeCells() {
         var input = React.inputCell(1);
@@ -68,7 +63,6 @@ public class ReactTest {
         assertThat(output.getValue()).isEqualTo(96);
     }
 
-    @Disabled("Remove to run")
     @Test
     public void testComputeCellsFireCallbacks() {
         var input = React.inputCell(1);
@@ -81,7 +75,6 @@ public class ReactTest {
         assertThat(values).containsExactly(4);
     }
 
-    @Disabled("Remove to run")
     @Test
     public void testCallbacksOnlyFireOnChange() {
         var input = React.inputCell(1);
@@ -97,7 +90,6 @@ public class ReactTest {
         assertThat(values).containsExactly(222);
     }
 
-    @Disabled("Remove to run")
     @Test
     public void testCallbacksDoNotReportAlreadyReportedValues() {
         var input = React.inputCell(1);
@@ -114,7 +106,6 @@ public class ReactTest {
         assertThat(values).containsExactly(4);
     }
 
-    @Disabled("Remove to run")
     @Test
     public void testCallbacksCanFireFromMultipleCells() {
         var input = React.inputCell(1);
@@ -132,7 +123,6 @@ public class ReactTest {
         assertThat(values2).containsExactly(9);
     }
 
-    @Disabled("Remove to run")
     @Test
     public void testCallbacksCanBeAddedAndRemoved() {
         var input = React.inputCell(11);
@@ -164,7 +154,6 @@ public class ReactTest {
         assertThat(values3).containsExactly(42);
     }
 
-    @Disabled("Remove to run")
     @Test
     public void testRemovingACallbackMultipleTimesDoesntInterfereWithOtherCallbacks() {
         var input = React.inputCell(1);
@@ -187,7 +176,6 @@ public class ReactTest {
         assertThat(values1).isEmpty();
     }
 
-    @Disabled("Remove to run")
     @Test
     public void testCallbacksShouldOnlyBeCalledOnceEvenIfMultipleDependenciesChange() {
         var input = React.inputCell(1);
@@ -203,7 +191,6 @@ public class ReactTest {
         assertThat(values).containsExactly(10);
     }
 
-    @Disabled("Remove to run")
     @Test
     public void testCallbacksShouldNotBeCalledIfDependenciesChangeButOutputValueDoesntChange() {
         var input = React.inputCell(1);

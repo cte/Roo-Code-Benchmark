@@ -1,20 +1,18 @@
 #!/bin/bash
 
-# https://github.com/exercism/javascript/blob/main/docs/TESTS.md
+# https://github.com/exercism/cpp/blob/main/docs/TESTS.md
 
 success_count=0
 failure_count=0
 total_count=0
 
-corepack enable
-
 for dir in */; do # Loop through each subdirectory.
   if [ -d "$dir" ]; then
     name=${dir%/} # Remove trailing slash from directory name.
 
-    if [ -f "$dir/package.json" ]; then
+    if [ -f "$dir/CMakeLists.txt" ]; then
       ((total_count++))
-      (cd "$dir" && pnpm install >/dev/null 2>&1 && pnpm test >/dev/null 2>&1)
+      (cd "$dir" && mkdir -p build && cd build && cmake -G "Unix Makefiles" .. >/dev/null 2>&1 && make >/dev/null 2>&1)
 
       if [ $? -eq 0 ]; then
         echo "🟢 $name"
@@ -24,7 +22,7 @@ for dir in */; do # Loop through each subdirectory.
         ((failure_count++))
       fi
     else
-      echo "⚠️ Skipped (no package.json found)"
+      echo "⚠️ Skipped (no CMakeLists.txt found)"
     fi
   fi
 done

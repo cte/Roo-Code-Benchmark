@@ -11,7 +11,6 @@ public class ZebraPuzzleTest {
         assertThat(zebraPuzzle.getWaterDrinker()).isEqualTo("Norwegian");
     }
 
-    @Disabled("Remove to run test")
     @Test
     public void residentWhoOwnsZebra() {
         ZebraPuzzle zebraPuzzle = new ZebraPuzzle();
