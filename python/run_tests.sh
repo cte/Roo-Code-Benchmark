@@ -3,11 +3,14 @@
 # https://github.com/exercism/python/blob/main/docs/TESTS.md
 # https://github.com/astral-sh/uv
 
+lang="python"
 success_count=0
 failure_count=0
 total_count=0
 
 python3 -m uv sync
+
+echo "--------------------------------------------------------------------------------"
 
 for dir in */; do # Loop through each subdirectory.
   if [ -d "$dir" ]; then
@@ -18,10 +21,10 @@ for dir in */; do # Loop through each subdirectory.
       (cd "$dir" && python3 -m uv run python3 -m pytest -o markers=task ${name}_test.py > /dev/null 2>&1)
 
       if [ $? -eq 0 ]; then
-        echo "🟢 $name"
+        echo "🟢 $lang/$name"
         ((success_count++))
       else
-        echo "🔴 $name"
+        echo "🔴 $lang/$name"
         ((failure_count++))
       fi
     else
@@ -30,5 +33,4 @@ for dir in */; do # Loop through each subdirectory.
   fi
 done
 
-echo "----------------------------------"
 echo "$success_count / $total_count ($(((success_count * 100) / (total_count > 0 ? total_count : 1)))%)"
