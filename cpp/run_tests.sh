@@ -9,7 +9,7 @@ total_count=0
 
 echo "--------------------------------------------------------------------------------"
 
-for dir in */; do # Loop through each subdirectory.
+for dir in */; do
   if [ -d "$dir" ]; then
     name=${dir%/} # Remove trailing slash from directory name.
 
@@ -31,3 +31,4 @@ for dir in */; do # Loop through each subdirectory.
 done
 
 echo "$success_count / $total_count ($(((success_count * 100) / (total_count > 0 ? total_count : 1)))%)"
+echo '{"success": '$success_count', "total": '$total_count'}' > results.json

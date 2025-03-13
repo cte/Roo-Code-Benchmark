@@ -32,3 +32,4 @@ for dir in */; do
 done
 
 echo "$success_count / $total_count ($(((success_count * 100) / (total_count > 0 ? total_count : 1)))%)"
+echo '{"success": '$success_count', "total": '$total_count'}' > results.json
