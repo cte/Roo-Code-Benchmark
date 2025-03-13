@@ -16,6 +16,7 @@ pnpm-lock.yaml
 .venv
 .pytest_cache
 uv.lock
+__pycache__
 
 # Rust
 target

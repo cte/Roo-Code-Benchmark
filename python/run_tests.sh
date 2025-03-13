@@ -8,7 +8,7 @@ success_count=0
 failure_count=0
 total_count=0
 
-python3 -m uv sync
+uv sync
 
 echo "--------------------------------------------------------------------------------"
 
@@ -18,7 +18,7 @@ for dir in */; do # Loop through each subdirectory.
 
     if [ -n "$(find "$dir" -maxdepth 1 -name "*_test.py" -print -quit)" ]; then
       ((total_count++))
-      (cd "$dir" && python3 -m uv run python3 -m pytest -o markers=task ${name}_test.py > /dev/null 2>&1)
+      (cd "$dir" && uv run python3 -m pytest -o markers=task ${name}_test.py > /dev/null 2>&1)
 
       if [ $? -eq 0 ]; then
         echo "🟢 $lang/$name"
