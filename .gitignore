@@ -21,3 +21,6 @@ __pycache__
 # Rust
 target
 Cargo.lock
+
+# web-ui
+!web-ui/pnpm-lock.yaml
