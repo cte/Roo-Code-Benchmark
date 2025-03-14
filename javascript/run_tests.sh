@@ -53,10 +53,6 @@ for dir in */; do # Loop through each subdirectory.
     else
       echo "⚠️ Skipped (no package.json found)"
     fi
-
-    if [ $failure_count -ge 5 ]; then
-      break
-    fi
   fi
 done
 
