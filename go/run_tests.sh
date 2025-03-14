@@ -19,11 +19,35 @@ for dir in */; do
       (cd "$dir" && go test > /dev/null 2>&1)
 
       if [ $? -eq 0 ]; then
-        echo "🟢 $lang/$name"
+        echo -n "🟢 $lang/$name"
         ((success_count++))
+        PASSED=true
       else
-        echo "🔴 $lang/$name"
+        echo -n "🔴 $lang/$name"
         ((failure_count++))
+        PASSED=false
+      fi
+
+      USAGE="$dir/usage.json"
+
+      if [ -f $USAGE ]; then
+        curl -f -X POST http://localhost:3000/api/tasks \
+          -H "Content-Type: application/json" \
+          -d "{
+            \"runId\": $(jq -r '.runId' $USAGE),
+            \"language\": \"$lang\",
+            \"exercise\": \"$name\",
+            \"tokensIn\": $(jq -r '.totalTokensIn' $USAGE),
+            \"tokensOut\": $(jq -r '.totalTokensOut' $USAGE),
+            \"tokensContext\": $(jq -r '.contextTokens' $USAGE),
+            \"cacheWrites\": $(jq -r '.totalCacheWrites' $USAGE),
+            \"cacheReads\": $(jq -r '.totalCacheReads' $USAGE),
+            \"cost\": $(jq -r '.totalCost' $USAGE),
+            \"duration\": $(jq -r '.duration' $USAGE),
+            \"passed\": $PASSED
+          }" >/dev/null 2>&1 && echo " 💾" || echo " 🚨"
+      else
+        echo
       fi
     else
       echo "⚠️ Skipped (no go.mod found)"
@@ -32,4 +56,3 @@ for dir in */; do
 done
 
 echo "$success_count / $total_count ($(((success_count * 100) / (total_count > 0 ? total_count : 1)))%)"
-echo '{"success": '$success_count', "total": '$total_count'}' > results.json

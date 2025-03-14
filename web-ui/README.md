@@ -25,11 +25,11 @@ pnpm dev
 ## API
 
 ```sh
-curl -X POST http://localhost:3000/api/runs \
+curl -f -X POST http://localhost:3000/api/runs \
   -H "Content-Type: application/json" \
   -d '{"model": "Claude 3.7 Sonnet"}'
 
-curl -X POST http://localhost:3000/api/tasks \
+curl -f -X POST http://localhost:3000/api/tasks \
   -H "Content-Type: application/json" \
   -d '{
     "runId": 1,
@@ -44,4 +44,13 @@ curl -X POST http://localhost:3000/api/tasks \
     "duration": 150000,
     "passed": true
   }'
+```
+
+## Recipes
+
+Zero-out and re-create database file:
+
+```sh
+truncate -s 0 /tmp/benchmarks.db
+npx drizzle-kit push
 ```
