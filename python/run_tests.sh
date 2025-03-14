@@ -8,11 +8,9 @@ success_count=0
 failure_count=0
 total_count=0
 
-uv sync
-
 echo "--------------------------------------------------------------------------------"
 
-for dir in */; do # Loop through each subdirectory.
+for dir in */; do
   if [ -d "$dir" ]; then
     name=${dir%/} # Remove trailing slash from directory name.
 
