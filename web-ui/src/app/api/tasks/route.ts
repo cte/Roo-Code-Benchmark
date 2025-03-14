@@ -1,18 +1,18 @@
 import { NextResponse } from 'next/server';
 
-import { db, runs, insertRunSchema } from '@/db';
+import { db, tasks, insertTaskSchema } from '@/db';
 
 export async function POST(request: Request) {
   try {
-    const run = await db
-      .insert(runs)
+    const task = await db
+      .insert(tasks)
       .values({
-        ...insertRunSchema.parse(await request.json()),
+        ...insertTaskSchema.parse(await request.json()),
         createdAt: new Date(),
       })
       .returning();
 
-    return NextResponse.json({ run }, { status: 201 });
+    return NextResponse.json({ task }, { status: 201 });
   } catch (error) {
     return NextResponse.json(
       { error: (error as Error).message },
