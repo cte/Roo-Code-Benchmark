@@ -2,7 +2,7 @@
 
 # https://github.com/exercism/cpp/blob/main/docs/TESTS.md
 
-lang="c++"
+lang="cpp"
 success_count=0
 failure_count=0
 total_count=0
@@ -15,9 +15,8 @@ for dir in */; do
 
     if [ -f "$dir/CMakeLists.txt" ]; then
       ((total_count++))
-      (cd "$dir" && mkdir -p build && cd build && cmake -G "Unix Makefiles" -DEXERCISM_RUN_ALL_TESTS=1 .. >/dev/null 2>&1 && make >/dev/null 2>&1)
 
-      if [ $? -eq 0 ]; then
+      if timeout 30s bash -c "cd '$dir' && mkdir -p build && cd build && cmake -G 'Unix Makefiles' -DEXERCISM_RUN_ALL_TESTS=1 .. >/dev/null 2>&1 && make >/dev/null 2>&1"; then
         echo -n "🟢 $lang/$name"
         ((success_count++))
         PASSED=true
