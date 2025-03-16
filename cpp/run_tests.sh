@@ -15,7 +15,7 @@ for dir in */; do
 
     if [ -f "$dir/CMakeLists.txt" ]; then
       ((total_count++))
-      (cd "$dir" && mkdir -p build && cd build && cmake -G "Unix Makefiles" .. >/dev/null 2>&1 && make >/dev/null 2>&1)
+      (cd "$dir" && mkdir -p build && cd build && cmake -G "Unix Makefiles" -DEXERCISM_RUN_ALL_TESTS=1 .. >/dev/null 2>&1 && make >/dev/null 2>&1)
 
       if [ $? -eq 0 ]; then
         echo -n "🟢 $lang/$name"
