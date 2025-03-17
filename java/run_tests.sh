@@ -15,7 +15,7 @@ for dir in */; do
 
     if [ -f "$dir/build.gradle" ]; then
       ((total_count++))
-      (cd "$dir" && ./gradlew test > /dev/null 2>&1)
+      (timeout --foreground 15s bash -c "cd '$dir' && ./gradlew test > /dev/null 2>&1")
 
       if [ $? -eq 0 ]; then
         echo -n "🟢 $lang/$name"
@@ -46,7 +46,7 @@ for dir in */; do
             \"passed\": $PASSED
           }" >/dev/null 2>&1 && echo " 💾" || echo " 🚨"
       else
-        echo
+        echo " 🚨"
       fi
     else
       echo "⚠️ Skipped (no build.gradle found)"

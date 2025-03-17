@@ -16,7 +16,7 @@ for dir in */; do
 
     if [ -f "$dir/go.mod" ]; then
       ((total_count++))
-      (cd "$dir" && go test > /dev/null 2>&1)
+      (timeout 15s bash -c "cd '$dir' && go test > /dev/null 2>&1")
 
       if [ $? -eq 0 ]; then
         echo -n "🟢 $lang/$name"
@@ -47,7 +47,7 @@ for dir in */; do
             \"passed\": $PASSED
           }" >/dev/null 2>&1 && echo " 💾" || echo " 🚨"
       else
-        echo
+        echo " 🚨"
       fi
     else
       echo "⚠️ Skipped (no go.mod found)"

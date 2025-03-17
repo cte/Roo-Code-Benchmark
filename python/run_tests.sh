@@ -16,7 +16,7 @@ for dir in */; do
 
     if [ -n "$(find "$dir" -maxdepth 1 -name "*_test.py" -print -quit)" ]; then
       ((total_count++))
-      (cd "$dir" && uv run python3 -m pytest -o markers=task ${name}_test.py > /dev/null 2>&1)
+      (timeout 15s bash -c "cd '$dir' && uv run python3 -m pytest -o markers=task *_test.py")
 
       if [ $? -eq 0 ]; then
         echo -n "🟢 $lang/$name"
@@ -47,7 +47,7 @@ for dir in */; do
             \"passed\": $PASSED
           }" >/dev/null 2>&1 && echo " 💾" || echo " 🚨"
       else
-        echo
+        echo " 🚨"
       fi
     else
       echo "⚠️ Skipped (no test.py found)"
