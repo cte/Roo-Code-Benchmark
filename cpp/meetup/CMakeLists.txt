@@ -7,10 +7,16 @@ cmake_minimum_required(VERSION 3.5.1)
 # Name the project after the exercise
 project(${exercise} CXX)
 
-# Locate Boost date_time library
+# Add additional paths to search for Boost
+set(BOOST_ROOT "/nix/store")
+set(BOOST_INCLUDEDIR "/nix/store")
+set(Boost_NO_SYSTEM_PATHS ON)
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
-find_package(Boost 1.58 REQUIRED COMPONENTS date_time)
+set(Boost_DEBUG ON)
+
+# Try to find Boost, but continue even if not found
+find_package(Boost 1.58 COMPONENTS date_time)
 
 # Get a source filename from the exercise name by replacing -'s with _'s
 string(REPLACE "-" "_" file ${exercise})
@@ -54,11 +60,13 @@ if("${CMAKE_CXX_COMPILER_ID}" MATCHES "(GNU|Clang)")
     )
 endif()
 
-# We need boost libraries
-target_link_libraries(${exercise}
-    PRIVATE
-    Boost::date_time
-)
+# We need boost libraries if found
+if(Boost_FOUND)
+    target_link_libraries(${exercise}
+        PRIVATE
+        Boost::date_time
+    )
+endif()
 
 # Configure to run all the tests?
 if(${EXERCISM_RUN_ALL_TESTS})

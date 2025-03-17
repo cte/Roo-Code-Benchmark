@@ -6,3 +6,4 @@ edition = "2021"
 [features]
 # check correct covariance and Send, Sync
 advanced = []
+default = ["advanced"]

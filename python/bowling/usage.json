@@ -1,0 +1,10 @@
+{
+  "runId": 3,
+  "totalTokensIn": 113308,
+  "totalTokensOut": 2278,
+  "totalCacheWrites": 0,
+  "totalCacheReads": 0,
+  "totalCost": 0.22149645,
+  "contextTokens": 22440,
+  "duration": 68392
+}

@@ -1,46 +1,64 @@
-//
-// This is only a SKELETON file for the 'Complex Numbers' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
 export class ComplexNumber {
-  constructor() {
-    throw new Error('Remove this statement and implement this function');
+  constructor(real, imag) {
+    this._real = real || 0;
+    this._imag = imag || 0;
   }
 
   get real() {
-    throw new Error('Remove this statement and implement this function');
+    return this._real;
   }
 
   get imag() {
-    throw new Error('Remove this statement and implement this function');
+    return this._imag;
   }
 
-  add() {
-    throw new Error('Remove this statement and implement this function');
+  add(other) {
+    return new ComplexNumber(
+      this._real + other.real,
+      this._imag + other.imag
+    );
   }
 
-  sub() {
-    throw new Error('Remove this statement and implement this function');
+  sub(other) {
+    return new ComplexNumber(
+      this._real - other.real,
+      this._imag - other.imag
+    );
   }
 
-  div() {
-    throw new Error('Remove this statement and implement this function');
+  mul(other) {
+    // (a + bi) * (c + di) = (ac - bd) + (bc + ad)i
+    return new ComplexNumber(
+      this._real * other.real - this._imag * other.imag,
+      this._imag * other.real + this._real * other.imag
+    );
   }
 
-  mul() {
-    throw new Error('Remove this statement and implement this function');
+  div(other) {
+    // (a + bi) / (c + di) = ((ac + bd)/(c^2 + d^2)) + ((bc - ad)/(c^2 + d^2))i
+    const denominator = other.real ** 2 + other.imag ** 2;
+    return new ComplexNumber(
+      (this._real * other.real + this._imag * other.imag) / denominator,
+      (this._imag * other.real - this._real * other.imag) / denominator
+    );
   }
 
   get abs() {
-    throw new Error('Remove this statement and implement this function');
+    // |a + bi| = sqrt(a^2 + b^2)
+    return Math.sqrt(this._real ** 2 + this._imag ** 2);
   }
 
   get conj() {
-    throw new Error('Remove this statement and implement this function');
+    // (a + bi)* = a - bi
+    return new ComplexNumber(this._real, -this._imag);
   }
 
   get exp() {
-    throw new Error('Remove this statement and implement this function');
+    // e^(a + bi) = e^a * (cos(b) + i*sin(b))
+    const expReal = Math.exp(this._real);
+    return new ComplexNumber(
+      expReal * Math.cos(this._imag),
+      expReal * Math.sin(this._imag)
+    );
   }
 }

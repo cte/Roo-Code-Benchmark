@@ -1,35 +1,85 @@
 package paasio
 
-import "io"
+import (
+	"io"
+	"sync"
+)
 
-// Define readCounter and writeCounter types here.
+// readCounter implements ReadCounter
+type readCounter struct {
+	reader    io.Reader
+	bytesRead int64
+	readOps   int
+	mu        sync.Mutex
+}
 
-// For the return of the function NewReadWriteCounter, you must also define a type that satisfies the ReadWriteCounter interface.
+// writeCounter implements WriteCounter
+type writeCounter struct {
+	writer       io.Writer
+	bytesWritten int64
+	writeOps     int
+	mu           sync.Mutex
+}
+
+// readWriteCounter implements ReadWriteCounter
+type readWriteCounter struct {
+	*readCounter
+	*writeCounter
+}
 
 func NewWriteCounter(writer io.Writer) WriteCounter {
-	panic("Please implement the NewWriterCounter function")
+	return &writeCounter{
+		writer:       writer,
+		bytesWritten: 0,
+		writeOps:     0,
+	}
 }
 
 func NewReadCounter(reader io.Reader) ReadCounter {
-	panic("Please implement the NewReadCounter function")
+	return &readCounter{
+		reader:    reader,
+		bytesRead: 0,
+		readOps:   0,
+	}
 }
 
 func NewReadWriteCounter(readwriter io.ReadWriter) ReadWriteCounter {
-	panic("Please implement the NewReadWriteCounter function")
+	return &readWriteCounter{
+		readCounter:  NewReadCounter(readwriter).(*readCounter),
+		writeCounter: NewWriteCounter(readwriter).(*writeCounter),
+	}
 }
 
 func (rc *readCounter) Read(p []byte) (int, error) {
-	panic("Please implement the Read function")
+	n, err := rc.reader.Read(p)
+	
+	rc.mu.Lock()
+	rc.bytesRead += int64(n)
+	rc.readOps++
+	rc.mu.Unlock()
+	
+	return n, err
 }
 
 func (rc *readCounter) ReadCount() (int64, int) {
-	panic("Please implement the ReadCount function")
+	rc.mu.Lock()
+	defer rc.mu.Unlock()
+	return rc.bytesRead, rc.readOps
 }
 
 func (wc *writeCounter) Write(p []byte) (int, error) {
-	panic("Please implement the Write function")
+	n, err := wc.writer.Write(p)
+	
+	wc.mu.Lock()
+	wc.bytesWritten += int64(n)
+	wc.writeOps++
+	wc.mu.Unlock()
+	
+	return n, err
 }
 
 func (wc *writeCounter) WriteCount() (int64, int) {
-	panic("Please implement the WriteCount function")
+	wc.mu.Lock()
+	defer wc.mu.Unlock()
+	return wc.bytesWritten, wc.writeOps
 }

@@ -4,41 +4,75 @@
 //
 
 export class Element {
-  constructor() {
-    throw new Error('Remove this statement and implement this function');
+  constructor(value) {
+    this._value = value;
+    this._next = null;
   }
 
   get value() {
-    throw new Error('Remove this statement and implement this function');
+    return this._value;
   }
 
   get next() {
-    throw new Error('Remove this statement and implement this function');
+    return this._next;
+  }
+
+  set next(element) {
+    this._next = element;
   }
 }
 
 export class List {
-  constructor() {
-    throw new Error('Remove this statement and implement this function');
+  constructor(values = []) {
+    this._length = 0;
+    this._head = null;
+    
+    // Initialize from array if provided
+    if (values.length > 0) {
+      for (let i = 0; i < values.length; i++) {
+        this.add(new Element(values[i]));
+      }
+    }
   }
 
-  add(nextValue) {
-    throw new Error('Remove this statement and implement this function');
+  add(element) {
+    if (this._head) {
+      element.next = this._head;
+    }
+    this._head = element;
+    this._length++;
   }
 
   get length() {
-    throw new Error('Remove this statement and implement this function');
+    return this._length;
   }
 
   get head() {
-    throw new Error('Remove this statement and implement this function');
+    return this._head;
   }
 
   toArray() {
-    throw new Error('Remove this statement and implement this function');
+    const result = [];
+    let current = this._head;
+    
+    while (current) {
+      result.push(current.value);
+      current = current.next;
+    }
+    
+    return result;
   }
 
   reverse() {
-    throw new Error('Remove this statement and implement this function');
+    const values = this.toArray();
+    const newList = new List();
+    
+    // Create a new list with elements in the reverse order
+    // Since our add method adds to the front, we need to iterate in the original order
+    for (let i = 0; i < values.length; i++) {
+      newList.add(new Element(values[i]));
+    }
+    
+    return newList;
   }
 }

@@ -11,40 +11,41 @@ class Node:
 
 
 def BuildTree(records):
-    root = None
+    # Handle empty input
+    if not records:
+        return None
+    
+    # Sort records by ID for easier processing
     records.sort(key=lambda x: x.record_id)
-    ordered_id = [i.record_id for i in records]
-    if records:
-        if ordered_id[-1] != len(ordered_id) - 1:
-            raise ValueError('broken tree')
-        if ordered_id[0] != 0:
-            raise ValueError('invalid')
-    trees = []
-    parent = {}
-    for i in range(len(ordered_id)):
-        for j in records:
-            if ordered_id[i] == j.record_id:
-                if j.record_id == 0:
-                    if j.parent_id != 0:
-                        raise ValueError('error!')
-                if j.record_id < j.parent_id:
-                    raise ValueError('something went wrong!')
-                if j.record_id == j.parent_id:
-                    if j.record_id != 0:
-                        raise ValueError('error!')
-                trees.append(Node(ordered_id[i]))
-    for i in range(len(ordered_id)):
-        for j in trees:
-            if i == j.node_id:
-                parent = j
-        for j in records:
-            if j.parent_id == i:
-                for k in trees:
-                    if k.node_id == 0:
-                        continue
-                    if j.record_id == k.node_id:
-                        child = k
-                        parent.children.append(child)
-    if len(trees) > 0:
-        root = trees[0]
-    return root
+    
+    # Validate records
+    if records[0].record_id != 0:
+        raise ValueError("Record id is invalid or out of order.")
+    
+    if records[-1].record_id != len(records) - 1:
+        raise ValueError("Record id is invalid or out of order.")
+    
+    # Create nodes for each record
+    nodes = {}
+    for record in records:
+        # Validate record
+        if record.record_id != record.parent_id and record.record_id < record.parent_id:
+            raise ValueError("Node parent_id should be smaller than it's record_id.")
+        
+        if record.record_id == record.parent_id and record.record_id != 0:
+            raise ValueError("Only root should have equal record and parent id.")
+        
+        # Create node
+        nodes[record.record_id] = Node(record.record_id)
+    
+    # Build tree by connecting nodes
+    for record in records:
+        # Skip root node (it has no parent)
+        if record.record_id == 0:
+            continue
+        
+        # Connect node to its parent
+        parent = nodes[record.parent_id]
+        parent.children.append(nodes[record.record_id])
+    
+    return nodes[0] if nodes else None

@@ -1,30 +1,63 @@
 def append(list1, list2):
-    pass
+    result = []
+    for item in list1:
+        result = result + [item]
+    for item in list2:
+        result = result + [item]
+    return result
 
 
 def concat(lists):
-    pass
+    result = []
+    for list_item in lists:
+        for item in list_item:
+            result = result + [item]
+    return result
 
 
 def filter(function, list):
-    pass
+    result = []
+    for item in list:
+        if function(item):
+            result = result + [item]
+    return result
 
 
 def length(list):
-    pass
+    count = 0
+    for _ in list:
+        count += 1
+    return count
 
 
 def map(function, list):
-    pass
+    result = []
+    for item in list:
+        result = result + [function(item)]
+    return result
 
 
 def foldl(function, list, initial):
-    pass
+    result = initial
+    for item in list:
+        result = function(result, item)
+    return result
 
 
 def foldr(function, list, initial):
-    pass
+    result = initial
+    # Use our own reverse function to process the list from right to left
+    reversed_list = reverse(list)
+    for item in reversed_list:
+        result = function(result, item)
+    return result
 
 
 def reverse(list):
-    pass
+    result = []
+    # Manual implementation without using range
+    i = length(list)
+    while i > 0:
+        i -= 1
+        result = result + [list[i]]
+    return result

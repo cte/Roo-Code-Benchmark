@@ -1,42 +1,91 @@
-//
-// This is only a SKELETON file for the 'List Ops' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
 export class List {
-  constructor() {
-    throw new Error('Remove this statement and implement this function');
+  constructor(values = []) {
+    this.values = [...values];
   }
 
-  append() {
-    throw new Error('Remove this statement and implement this function');
+  append(list) {
+    const newList = new List([...this.values]);
+    
+    for (let i = 0; i < list.values.length; i++) {
+      newList.values.push(list.values[i]);
+    }
+    
+    return newList;
   }
 
-  concat() {
-    throw new Error('Remove this statement and implement this function');
+  concat(listOfLists) {
+    const newList = new List([...this.values]);
+    
+    for (let i = 0; i < listOfLists.values.length; i++) {
+      const currentList = listOfLists.values[i];
+      
+      for (let j = 0; j < currentList.values.length; j++) {
+        newList.values.push(currentList.values[j]);
+      }
+    }
+    
+    return newList;
   }
 
-  filter() {
-    throw new Error('Remove this statement and implement this function');
-  }
-
-  map() {
-    throw new Error('Remove this statement and implement this function');
+  filter(predicate) {
+    const newList = new List();
+    
+    for (let i = 0; i < this.values.length; i++) {
+      if (predicate(this.values[i])) {
+        newList.values.push(this.values[i]);
+      }
+    }
+    
+    return newList;
   }
 
   length() {
-    throw new Error('Remove this statement and implement this function');
+    let count = 0;
+    
+    for (let i = 0; i < this.values.length; i++) {
+      count++;
+    }
+    
+    return count;
   }
 
-  foldl() {
-    throw new Error('Remove this statement and implement this function');
+  map(transform) {
+    const newList = new List();
+    
+    for (let i = 0; i < this.values.length; i++) {
+      newList.values.push(transform(this.values[i]));
+    }
+    
+    return newList;
   }
 
-  foldr() {
-    throw new Error('Remove this statement and implement this function');
+  foldl(reducer, initial) {
+    let accumulator = initial;
+    
+    for (let i = 0; i < this.values.length; i++) {
+      accumulator = reducer(accumulator, this.values[i]);
+    }
+    
+    return accumulator;
+  }
+
+  foldr(reducer, initial) {
+    let accumulator = initial;
+    
+    for (let i = this.values.length - 1; i >= 0; i--) {
+      accumulator = reducer(accumulator, this.values[i]);
+    }
+    
+    return accumulator;
   }
 
   reverse() {
-    throw new Error('Remove this statement and implement this function');
+    const newList = new List();
+    
+    for (let i = this.values.length - 1; i >= 0; i--) {
+      newList.values.push(this.values[i]);
+    }
+    
+    return newList;
   }
 }

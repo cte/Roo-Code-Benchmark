@@ -24,4 +24,43 @@ class Edge:
 
 class Graph:
     def __init__(self, data=None):
-        pass
+        self.nodes = []
+        self.edges = []
+        self.attrs = {}
+
+        if data is None:
+            return
+
+        if not isinstance(data, list):
+            raise TypeError("Graph data malformed")
+
+        for item in data:
+            if not isinstance(item, tuple) or len(item) < 2:
+                raise TypeError("Graph item incomplete")
+
+            item_type = item[0]
+
+            if item_type == NODE:
+                if len(item) != 3:
+                    raise ValueError("Node is malformed")
+                name, attrs = item[1], item[2]
+                if not isinstance(attrs, dict):
+                    raise ValueError("Node is malformed")
+                self.nodes.append(Node(name, attrs))
+
+            elif item_type == EDGE:
+                if len(item) != 4:
+                    raise ValueError("Edge is malformed")
+                src, dst, attrs = item[1], item[2], item[3]
+                if not isinstance(attrs, dict):
+                    raise ValueError("Edge is malformed")
+                self.edges.append(Edge(src, dst, attrs))
+
+            elif item_type == ATTR:
+                if len(item) != 3:
+                    raise ValueError("Attribute is malformed")
+                key, value = item[1], item[2]
+                self.attrs[key] = value
+
+            else:
+                raise ValueError("Unknown item")
