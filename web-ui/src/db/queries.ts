@@ -9,9 +9,10 @@ export const getRuns = () =>
       model: runs.model,
       description: runs.description,
       createdAt: runs.createdAt,
-      passed: sql<number>`sum(${tasks.passed} = 1)`,
+      passed: sql<number>`sum(${tasks.passed})`,
       failed: sql<number>`sum(${tasks.passed} = 0)`,
-      rate: sql<number>`sum(${tasks.passed} = 1) / count(${tasks.id})`,
+      total: sql<number>`count(${tasks.id})`,
+      rate: sql<number>`sum(${tasks.passed}) * 1.0 / count(${tasks.id})`,
       cost: sql<number>`sum(${tasks.cost})`,
       duration: sql<number>`sum(${tasks.duration})`,
     })

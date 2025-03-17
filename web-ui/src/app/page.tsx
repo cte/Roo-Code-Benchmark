@@ -7,13 +7,9 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui';
+import { formatCurrency, formatDuration } from '@/lib';
 
 export const dynamic = 'force-dynamic';
-
-const formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-});
 
 export default async function Home() {
   const runs = await getRuns();
@@ -42,8 +38,8 @@ export default async function Home() {
               <TableCell>{run.passed}</TableCell>
               <TableCell>{run.failed}</TableCell>
               <TableCell>{(run.rate * 100).toFixed(1)}%</TableCell>
-              <TableCell>{formatter.format(run.cost)}</TableCell>
-              <TableCell>{Math.round(run.duration / 1000)}s</TableCell>
+              <TableCell>{formatCurrency(run.cost)}</TableCell>
+              <TableCell>{formatDuration(run.duration)}</TableCell>
             </TableRow>
           ))}
         </TableBody>
