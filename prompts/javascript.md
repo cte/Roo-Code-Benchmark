@@ -6,4 +6,4 @@ To successfully complete the exercise, you must pass all the tests in the test f
 
 To confirm that your solution is correct, run the tests with `pnpm test`. Do not alter the test file; it should be run as-is.
 
-Before running the tests make sure your environment is set up by running `corepack use pnpm@latest` to install `pnpm` and `pnpm install` to install the dependencies.
+Before running the tests make sure your environment is set up by running `pnpm install` to install the dependencies.
